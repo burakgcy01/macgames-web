@@ -924,3 +924,57 @@ footer {
     gap: 3px;
   }
 }
+
+.upcoming-section {
+  background: var(--bg2);
+  border-top: 1px solid var(--line);
+}
+
+.upcoming-card {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  padding: 40px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg3);
+}
+
+.upcoming-logo {
+  flex-shrink: 0;
+  width: 140px;
+  height: 140px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upcoming-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upcoming-info h3 {
+  margin: 12px 0 8px;
+  font-size: 28px;
+  letter-spacing: -0.03em;
+}
+
+.upcoming-info p {
+  color: var(--text2);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (max-width: 560px) {
+  .upcoming-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 20px;
+  }
+}
