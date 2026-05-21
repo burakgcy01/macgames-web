@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Mac Games</title>
-  <meta name="description" content="Mac Games — independent mobile game studio. Building worlds worth exploring.">
+  <title>Mac Games — Play Chaos Path</title>
+  <meta name="description" content="Play Chaos Path by Mac Games. A browser-ready procedural survival mining game with crafting, rare ores, and touch controls.">
+  <meta property="og:title" content="Mac Games — Chaos Path">
+  <meta property="og:description" content="Play Chaos Path free in your browser. Mine, craft, survive, and push deeper into a procedural world.">
+  <meta property="og:image" content="https://macgames.me/images/chaos-path-logo.jpg">
+  <meta property="og:url" content="https://macgames.me">
   <link rel="icon" type="image/png" href="images/macgames-logo-new.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +16,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <nav>
     <div class="nav-inner">
       <a href="/" class="nav-logo">
@@ -21,6 +24,7 @@
       <div class="nav-links">
         <a href="#games">Games</a>
         <a href="/devlog.html">Devlog</a>
+        <a href="/legal.html">Legal</a>
         <a href="https://www.instagram.com/macgamessocial?igsh=ZHNpbGkwcng3dTdq&utm_source=qr" target="_blank" rel="noopener" class="nav-icon" title="Instagram">
           <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
         </a>
@@ -36,96 +40,130 @@
 
   <div class="nav-mobile" id="navMobile">
     <a href="#games" onclick="closeMobileNav()">Games</a>
-    <a href="/devlog.html" onclick="closeMobileNav()">Devlog</a>
-    <a href="/legal.html" onclick="closeMobileNav()">Legal</a>
+    <a href="/devlog.html">Devlog</a>
+    <a href="/legal.html">Legal</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="https://www.instagram.com/macgamessocial?igsh=ZHNpbGkwcng3dTdq&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
   </div>
 
-  <!-- HERO BRAND -->
-  <section class="hero-brand">
-    <div class="hero-brand-inner">
-      <img src="images/macgames-logo-new.png" alt="Mac Games" class="hero-brand-logo">
-      <h1 class="hero-brand-name">MAC GAMES</h1>
-      <p class="hero-brand-sub">Independent game studio.<br>Building worlds worth exploring.</p>
-      <a href="#games" class="hero-brand-cta">See our games
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  <header class="hero">
+    <div class="hero-bg" style="background-image:url('images/screenshot-gameplay.jpg')"></div>
+    <div class="hero-shade"></div>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow">Now playable in browser</span>
+        <img src="images/chaos-path-text.png" alt="Chaos Path" class="hero-title-img">
+        <h1>Mine. Craft. Survive the fog.</h1>
+        <p>Chaos Path is a procedural survival mining game from Mac Games. Start instantly on web, then push deeper for rare ores, stronger tools, and stranger biomes.</p>
+        <div class="hero-actions">
+          <a href="/play.html" class="btn-primary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            Play Free
+          </a>
+          <a href="#games" class="btn-secondary">See Details</a>
+        </div>
+      </div>
+      <a href="/play.html" class="hero-preview" aria-label="Play Chaos Path">
+        <img src="images/screenshot-inventory.jpg" alt="Chaos Path gameplay preview">
+        <div class="preview-bar">
+          <span>Web Demo</span>
+          <strong>Play</strong>
+        </div>
       </a>
     </div>
-  </section>
+  </header>
 
-  <!-- GAME SLIDER -->
-  <section class="games-slider" id="games">
-    <div class="slider-track" id="sliderTrack">
-
-      <!-- Chaos Path -->
-      <div class="game-slide">
-        <div class="slide-bg" style="background-image:url('images/screenshot-gameplay.jpg')"></div>
-        <div class="slide-shade"></div>
-        <div class="slide-inner">
-          <div class="slide-logo">
-            <img src="images/chaos-path-text.png" alt="Chaos Path">
+  <main>
+    <section class="section games-section" id="games">
+      <div class="container">
+        <div class="section-header split">
+          <div>
+            <span class="eyebrow">Featured game</span>
+            <h2>Chaos Path</h2>
           </div>
-          <div class="slide-meta">
-            <span class="slide-badge live">Live Web Demo</span>
-            <p>Mine rare ores, craft tools, fight through fog pressure, and push deeper into a procedural world.</p>
+          <a href="/play.html" class="text-link">Open game page</a>
+        </div>
+
+        <article class="game-showcase">
+          <div class="showcase-media">
+            <div class="game-card-bg" id="cpBg" style="background-image:url('images/screenshot-gameplay.jpg')"></div>
+            <div class="screenshot-dots" id="cpDots">
+              <button class="sdot active" onclick="cpSetShot(0)" aria-label="Gameplay screenshot"></button>
+              <button class="sdot" onclick="cpSetShot(1)" aria-label="Inventory screenshot"></button>
+            </div>
+          </div>
+          <div class="showcase-content">
+            <div class="game-badge">Live Web Demo</div>
+            <p class="game-desc">Mine rare ores, craft tools, fight through fog pressure, and carry your run deeper into an expanding procedural world.</p>
+            <div class="game-rating-strip">
+              <span class="rating-stars" data-rating-stars="chaos-path">☆☆☆☆☆</span>
+              <span data-rating-summary="chaos-path">Loading ratings...</span>
+            </div>
             <div class="game-tags">
               <span class="tag">Survival</span>
               <span class="tag">Mining</span>
               <span class="tag">Crafting</span>
               <span class="tag">Procedural</span>
+              <span class="tag">Touch controls</span>
             </div>
-            <div class="slide-rating">
-              <span class="rating-stars" data-rating-stars="chaos-path">☆☆☆☆☆</span>
-              <span data-rating-summary="chaos-path" style="font-size:13px;color:var(--text2)">Loading...</span>
-            </div>
-            <div class="slide-actions">
-              <a href="/play.html" class="btn-primary">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M8 5v14l11-7z"/></svg>
-                Play Free
+            <div class="game-actions">
+              <a href="/play.html" class="btn-store btn-play">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                Play in Browser
               </a>
-              <a href="/devlog.html" class="btn-secondary">Devlog</a>
+              <a href="/devlog.html" class="btn-store btn-muted">Read Devlog</a>
             </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section detail-section">
+      <div class="container">
+        <div class="feature-grid">
+          <div class="feature-item">
+            <span class="feature-kicker">World</span>
+            <h3>Procedural paths</h3>
+            <p>Every run stretches into a fresh mining route with different resources, obstacles, and pressure points.</p>
+          </div>
+          <div class="feature-item">
+            <span class="feature-kicker">Progression</span>
+            <h3>Tool tiers that matter</h3>
+            <p>Upgrade from stone to crystal-grade gear and unlock deeper materials as the world gets tougher.</p>
+          </div>
+          <div class="feature-item">
+            <span class="feature-kicker">Web</span>
+            <h3>Instant demo</h3>
+            <p>No launcher, no store page, no waiting room. Open the game page and start playing in seconds.</p>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Persistence K -->
-      <div class="game-slide">
-        <div class="slide-bg pk-bg"></div>
-        <div class="slide-shade"></div>
-        <div class="slide-inner">
-          <div class="slide-logo pk-logo-wrap">
-            <img src="images/pk-logo.png" alt="Persistence K">
-          </div>
-          <div class="slide-meta">
-            <span class="slide-badge upcoming">In Development</span>
-            <h2 class="slide-title">Persistence K</h2>
-            <p>A minimalist game engine and maker. Build worlds tile by tile.</p>
-            <div class="game-tags">
-              <span class="tag">Game Engine</span>
-              <span class="tag">Tile Editor</span>
-              <span class="tag">PC</span>
-            </div>
-            <div class="slide-actions">
-              <a href="/devlog.html" class="btn-secondary">Follow Development</a>
-            </div>
+  <section class="section upcoming-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Coming soon</span>
+        <h2>Upcoming</h2>
+      </div>
+      <div class="upcoming-card">
+        <div class="upcoming-logo">
+          <img src="images/pk-logo.png" alt="Persistence K">
+        </div>
+        <div class="upcoming-info">
+          <div class="game-badge" style="background:rgba(154,124,255,0.12);border-color:rgba(154,124,255,0.26);color:#c4b5ff">In Development</div>
+          <h3>Persistence K</h3>
+          <p>A minimalist game engine and maker. Build worlds tile by tile.</p>
+          <div class="game-tags" style="margin-top:16px">
+            <span class="tag">Game Engine</span>
+            <span class="tag">Tile Editor</span>
+            <span class="tag">PC</span>
           </div>
         </div>
       </div>
-
-    </div>
-
-    <button class="slider-arrow left" id="arrowLeft" onclick="slide(-1)" aria-label="Previous">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
-    </button>
-    <button class="slider-arrow right" id="arrowRight" onclick="slide(1)" aria-label="Next">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
-    </button>
-
-    <div class="slider-dots" id="sliderDots">
-      <button class="sdot active" onclick="goTo(0)"></button>
-      <button class="sdot" onclick="goTo(1)"></button>
     </div>
   </section>
+  </main>
 
   <footer>
     <div class="container footer-inner">
@@ -146,35 +184,19 @@
     </div>
   </footer>
 
+  <script src="script.js"></script>
+  <script type="module" src="reviews.js"></script>
   <script>
+    const cpShots = ['images/screenshot-gameplay.jpg', 'images/screenshot-inventory.jpg'];
+    function cpSetShot(i) {
+      document.getElementById('cpBg').style.backgroundImage = `url('${cpShots[i]}')`;
+      document.querySelectorAll('#cpDots .sdot').forEach((dot, index) => dot.classList.toggle('active', index === i));
+    }
+
     const burger = document.getElementById('navBurger');
     const navMobile = document.getElementById('navMobile');
     burger.addEventListener('click', () => navMobile.classList.toggle('open'));
     function closeMobileNav() { navMobile.classList.remove('open'); }
-
-    let current = 0;
-    const slides = document.querySelectorAll('.game-slide');
-    const dots = document.querySelectorAll('#sliderDots .sdot');
-
-    function goTo(i) {
-      slides[current].classList.remove('active');
-      dots[current].classList.remove('active');
-      current = (i + slides.length) % slides.length;
-      slides[current].classList.add('active');
-      dots[current].classList.add('active');
-      document.getElementById('arrowLeft').style.opacity = current === 0 ? '0.25' : '1';
-      document.getElementById('arrowRight').style.opacity = current === slides.length - 1 ? '0.25' : '1';
-    }
-
-    function slide(dir) { goTo(current + dir); }
-    slides[0].classList.add('active');
-    document.getElementById('arrowLeft').style.opacity = '0.25';
-
-    document.addEventListener('keydown', e => {
-      if (e.key === 'ArrowLeft') slide(-1);
-      if (e.key === 'ArrowRight') slide(1);
-    });
   </script>
-  <script type="module" src="reviews.js"></script>
 </body>
 </html>
