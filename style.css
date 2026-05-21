@@ -162,25 +162,19 @@ nav {
 }
 
 .product-card {
-  position: absolute;
-  inset: 0;
-  display: grid;
+  position: relative;
+  display: none;
   grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.78fr);
   align-items: stretch;
+  min-height: min(760px, calc(100svh - 150px));
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateX(26px) scale(0.985);
-  transition: opacity 0.28s ease, transform 0.28s ease;
 }
 
 .product-card.active {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateX(0) scale(1);
+  display: grid;
 }
 
 .product-backdrop {
@@ -696,14 +690,8 @@ textarea { min-height: 130px; resize: vertical; }
   }
 
   .product-card {
-    position: relative;
-    display: none;
     grid-template-columns: 1fr;
     min-height: calc(100svh - 150px);
-  }
-
-  .product-card.active {
-    display: grid;
   }
 
   .product-visual {

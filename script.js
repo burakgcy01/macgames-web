@@ -8,7 +8,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.product-card, .post-card').forEach(el => {
+document.querySelectorAll('.post-card').forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(24px)';
   el.style.transition = 'opacity .5s ease, transform .5s ease';

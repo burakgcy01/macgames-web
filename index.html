@@ -13,7 +13,28 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=product-fix-2">
+  <style>
+    .product-home{min-height:100svh;padding:92px 24px 34px;display:flex;align-items:stretch;background:#05060a;color:#f6f7fb}
+    .product-stage{position:relative;width:min(1180px,100%);margin:0 auto;display:grid;grid-template-rows:1fr auto;align-items:center}
+    .product-carousel{position:relative;min-height:min(760px,calc(100svh - 150px))}
+    .product-card{position:relative;display:none!important;grid-template-columns:minmax(0,1.05fr) minmax(360px,.78fr);align-items:stretch;min-height:min(760px,calc(100svh - 150px));overflow:hidden;border:1px solid rgba(255,255,255,.11);border-radius:8px;background:#10141d}
+    .product-card.active{display:grid!important}
+    .product-backdrop{position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(5,6,10,.18),rgba(5,6,10,.78)),var(--product-bg);background-size:cover;background-position:center;filter:saturate(1.02) contrast(1.04);transform:scale(1.02)}
+    .product-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,6,10,.12),rgba(5,6,10,.72))}
+    .product-visual,.product-info{position:relative;z-index:1}
+    .product-visual{min-height:520px;display:flex;align-items:center;justify-content:center;padding:58px}
+    .product-logo-img{width:min(540px,82%);height:auto;filter:drop-shadow(0 22px 28px rgba(0,0,0,.55))}
+    .pk-logo{width:min(420px,78%);height:auto;border-radius:8px;box-shadow:0 26px 54px rgba(0,0,0,.4)}
+    .product-info{display:flex;flex-direction:column;justify-content:flex-end;min-height:520px;padding:64px 56px;background:linear-gradient(90deg,rgba(5,6,10,.18),rgba(5,6,10,.86));border-left:1px solid rgba(255,255,255,.11)}
+    .product-info h1{margin-top:18px;font-size:clamp(52px,6.4vw,92px);line-height:.94;font-weight:900;letter-spacing:-.04em}
+    .product-info p{margin-top:20px;color:#c7cfdd;font-size:clamp(16px,1.55vw,20px);line-height:1.55}
+    .product-tags,.product-actions,.product-rating{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+    .carousel-arrow{position:absolute;z-index:5;top:50%;width:46px;height:46px;transform:translateY(-50%);border:1px solid rgba(255,255,255,.18);border-radius:8px;background:rgba(8,10,15,.78);color:#f6f7fb;font-size:18px;font-weight:900;cursor:pointer}
+    .carousel-prev{left:18px}.carousel-next{right:18px}.carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:18px}.carousel-dots button{width:34px;height:6px;border:0;border-radius:8px;background:rgba(255,255,255,.2)}.carousel-dots button.active{background:#f4f6fb}
+    @media(max-width:900px){.product-card{grid-template-columns:1fr;min-height:calc(100svh - 150px)}.product-visual{min-height:330px;padding:44px 22px 20px}.product-info{min-height:auto;padding:26px 22px 34px;border-left:0;border-top:1px solid rgba(255,255,255,.11)}.carousel-arrow{top:250px}}
+    @media(max-width:560px){.product-home{padding:78px 14px 22px}.product-card{min-height:calc(100svh - 132px)}.product-visual{min-height:260px}.product-info h1{font-size:42px}.carousel-prev{left:10px}.carousel-next{right:10px}}
+  </style>
 </head>
 <body>
   <nav>
@@ -119,8 +140,8 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
-  <script type="module" src="reviews.js"></script>
+  <script src="script.js?v=product-fix-2"></script>
+  <script type="module" src="reviews.js?v=product-fix-2"></script>
   <script>
     const burger = document.getElementById('navBurger');
     const navMobile = document.getElementById('navMobile');
