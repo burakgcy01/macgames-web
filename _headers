@@ -1,0 +1,12 @@
+/*
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Embedder-Policy: require-corp
+
+/Build/webbuild3.framework.js
+  Content-Type: application/javascript
+
+/Build/webbuild3.wasm
+  Content-Type: application/wasm
+
+/Build/webbuild3.data.gz
+  Content-Type: application/gzip

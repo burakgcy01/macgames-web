@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community — Mac Games</title>
+  <link rel="icon" type="image/png" href="images/macgames-logo-new.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="images/macgames-logo-new.png" alt="Mac Games" style="height:28px;width:auto;vertical-align:middle;margin-right:8px">MAC GAMES
+      </a>
+      <div class="nav-links">
+        <a href="/#games">Games</a>
+        <a href="/devlog.html">Devlog</a>
+      </div>
+      <button class="nav-burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-mobile" id="navMobile">
+    <a href="/#games" onclick="closeMobileNav()">🎮 Games</a>
+    <a href="/devlog.html" onclick="closeMobileNav()">📝 Devlog</a>
+    <a href="/community.html" onclick="closeMobileNav()">💬 Community</a>
+  </div>
+
+  <div class="community-layout">
+    <div class="community-header">
+      <h1>Community</h1>
+      <div class="auth-bar" id="authBar">
+        <button class="btn-google" id="btnSignIn" onclick="signIn()">
+          <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Sign in with Google
+        </button>
+        <div id="userInfo" style="display:none;align-items:center;gap:10px">
+          <img id="userAvatar" src="" alt="" class="msg-avatar">
+          <span class="username" id="userDisplayName"></span>
+          <button class="btn-signout" onclick="doSignOut()">Sign out</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="username-setup" id="usernameSetup">
+      <h3>Choose your username</h3>
+      <p style="font-size:13px;color:var(--text2)">This will be shown in the community chat.</p>
+      <input type="text" id="usernameInput" placeholder="e.g. ChaosExplorer42" maxlength="20">
+      <button class="btn-save" onclick="saveUsername()">Save & Join</button>
+      <p style="font-size:12px;color:var(--text2)" id="usernameError"></p>
+    </div>
+
+    <div class="messages" id="messages">
+      <div class="login-prompt" id="loginPrompt">Sign in with Google to join the community chat.</div>
+    </div>
+
+    <div id="chatInputArea">
+      <div class="chat-input-row">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Say something..." maxlength="300" onkeydown="if(event.key==='Enter')sendMessage()">
+        <button class="btn-send" id="btnSend" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="nav-logo"><img src="images/macgames-logo-new.png" alt="Mac Games" style="height:24px;width:auto;vertical-align:middle;margin-right:8px">MAC GAMES</span>
+        <p>Independent mobile game studio.<br>Building worlds worth exploring.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/#games">Games</a>
+        <a href="/devlog.html">Devlog</a>
+        <a href="/legal.html">Legal</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Mac Games. All rights reserved. · <a href="/legal.html" style="color:var(--text2)">Legal</a> · <a href="/privacy.html" style="color:var(--text2)">Privacy</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.getElementById('navBurger');
+    const navMobile = document.getElementById('navMobile');
+    burger.addEventListener('click', () => navMobile.classList.toggle('open'));
+    function closeMobileNav() { navMobile.classList.remove('open'); }
+  </script>
+
+  <script type="module">
+    import { auth, db, googleProvider, signInWithPopup, signOut, onAuthStateChanged,
+             collection, addDoc, onSnapshot, query, orderBy, limit, serverTimestamp,
+             doc, setDoc, getDoc } from './firebase.js';
+
+    let currentUser = null;
+    let currentUsername = null;
+    let unsubMessages = null;
+
+    window.signIn = async () => {
+      try { await signInWithPopup(auth, googleProvider); }
+      catch(e) { console.error(e); }
+    };
+
+    window.doSignOut = async () => { await signOut(auth); };
+
+    window.saveUsername = async () => {
+      const val = document.getElementById('usernameInput').value.trim();
+      if (!val || val.length < 2) { document.getElementById('usernameError').textContent = 'Min 2 characters.'; return; }
+      if (!/^[a-zA-Z0-9_]+$/.test(val)) { document.getElementById('usernameError').textContent = 'Only letters, numbers and underscores.'; return; }
+      await setDoc(doc(db, 'users', currentUser.uid), { username: val, photoURL: currentUser.photoURL || '' });
+      currentUsername = val;
+      showChat();
+    };
+
+    window.sendMessage = async () => {
+      const input = document.getElementById('chatInput');
+      const text = input.value.trim();
+      if (!text || !currentUsername) return;
+      input.value = '';
+      await addDoc(collection(db, 'messages'), {
+        text, username: currentUsername,
+        photoURL: currentUser.photoURL || '',
+        uid: currentUser.uid,
+        ts: serverTimestamp()
+      });
+    };
+
+    function showChat() {
+      document.getElementById('usernameSetup').style.display = 'none';
+      document.getElementById('chatInputArea').style.display = 'block';
+      document.getElementById('loginPrompt').style.display = 'none';
+      if (unsubMessages) return;
+      const q = query(collection(db, 'messages'), orderBy('ts', 'asc'), limit(100));
+      unsubMessages = onSnapshot(q, snap => {
+        const box = document.getElementById('messages');
+        box.innerHTML = '';
+        snap.forEach(d => {
+          const m = d.data();
+          const div = document.createElement('div');
+          div.className = 'msg';
+          const initials = (m.username||'?')[0].toUpperCase();
+          const avatarHtml = m.photoURL
+            ? `<img src="${m.photoURL}" class="msg-avatar" referrerpolicy="no-referrer">`
+            : `<div class="msg-avatar">${initials}</div>`;
+          const time = m.ts ? new Date(m.ts.seconds*1000).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}) : '';
+          div.innerHTML = `${avatarHtml}<div class="msg-body"><div class="msg-meta"><span class="msg-name">${m.username}</span><span class="msg-time">${time}</span></div><div class="msg-text">${m.text.replace(/</g,'&lt;')}</div></div>`;
+          box.appendChild(div);
+        });
+        box.scrollTop = box.scrollHeight;
+      });
+    }
+
+    onAuthStateChanged(auth, async user => {
+      currentUser = user;
+      if (user) {
+        document.getElementById('btnSignIn').style.display = 'none';
+        document.getElementById('userInfo').style.display = 'flex';
+        document.getElementById('userAvatar').src = user.photoURL || '';
+        const snap = await getDoc(doc(db, 'users', user.uid));
+        if (snap.exists() && snap.data().username) {
+          currentUsername = snap.data().username;
+          document.getElementById('userDisplayName').textContent = currentUsername;
+          showChat();
+        } else {
+          document.getElementById('userDisplayName').textContent = user.displayName || '';
+          document.getElementById('usernameSetup').style.display = 'flex';
+          document.getElementById('loginPrompt').style.display = 'none';
+        }
+      } else {
+        document.getElementById('btnSignIn').style.display = 'flex';
+        document.getElementById('userInfo').style.display = 'none';
+        document.getElementById('usernameSetup').style.display = 'none';
+        document.getElementById('chatInputArea').style.display = 'none';
+        document.getElementById('loginPrompt').style.display = 'block';
+        if (unsubMessages) { unsubMessages(); unsubMessages = null; }
+      }
+    });
+  </script>
+</body>
+</html>

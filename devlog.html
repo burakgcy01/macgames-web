@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devlog — Mac Games</title>
+  <link rel="icon" type="image/png" href="images/macgames-logo-new.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="images/macgames-logo-new.png" alt="Mac Games" style="height:28px;width:auto;vertical-align:middle;margin-right:8px">MAC GAMES
+      </a>
+      <div class="nav-links">
+        <a href="/#games">Games</a>
+        <a href="/devlog.html" style="color:var(--text)">Devlog</a>
+      </div>
+      <button class="nav-burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-mobile" id="navMobile">
+    <a href="/#games" onclick="closeMobileNav()">🎮 Games</a>
+    <a href="/devlog.html" onclick="closeMobileNav()">📝 Devlog</a>
+    <a href="/community.html" onclick="closeMobileNav()">💬 Community</a>
+  </div>
+
+  <div class="devlog-layout">
+    <div class="page-header">
+      <h1>Devlog</h1>
+      <p class="devlog-subtitle">Development updates from the Mac Games team.</p>
+    </div>
+
+    <div class="admin-panel" id="adminPanel">
+      <h3>New Post</h3>
+      <input type="text" id="postTitle" placeholder="Title">
+      <textarea id="postBody" placeholder="Write your update..."></textarea>
+      <button class="btn-post" id="btnPost" onclick="submitPost()">Publish</button>
+      <span class="post-status" id="postStatus"></span>
+    </div>
+
+    <div class="posts" id="postsList">
+      <div class="posts-empty" id="postsEmpty">No devlog posts yet. Check back soon!</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="nav-logo"><img src="images/macgames-logo-new.png" alt="Mac Games" style="height:24px;width:auto;vertical-align:middle;margin-right:8px">MAC GAMES</span>
+        <p>Independent mobile game studio.<br>Building worlds worth exploring.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/#games">Games</a>
+        <a href="/devlog.html">Devlog</a>
+        <a href="/legal.html">Legal</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Mac Games. All rights reserved. · <a href="/legal.html" style="color:var(--text2)">Legal</a> · <a href="/privacy.html" style="color:var(--text2)">Privacy</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.getElementById('navBurger');
+    const navMobile = document.getElementById('navMobile');
+    burger.addEventListener('click', () => navMobile.classList.toggle('open'));
+    function closeMobileNav() { navMobile.classList.remove('open'); }
+  </script>
+
+  <script type="module">
+    import { auth, db, onAuthStateChanged,
+             collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from './firebase.js';
+
+    const ADMIN_UID = 'wWyOZIgEh3dav9HAUz2nm2OgtHT2';
+    let currentUser = null;
+
+    window.submitPost = async () => {
+      const title = document.getElementById('postTitle').value.trim();
+      const body = document.getElementById('postBody').value.trim();
+      if (!title || !body) return;
+      const btn = document.getElementById('btnPost');
+      btn.disabled = true;
+      document.getElementById('postStatus').textContent = 'Publishing...';
+      await addDoc(collection(db, 'devlog'), { title, body, ts: serverTimestamp() });
+      document.getElementById('postTitle').value = '';
+      document.getElementById('postBody').value = '';
+      document.getElementById('postStatus').textContent = 'Published!';
+      btn.disabled = false;
+      setTimeout(() => { document.getElementById('postStatus').textContent = ''; }, 3000);
+    };
+
+    function renderPosts(snap) {
+      const list = document.getElementById('postsList');
+      const empty = document.getElementById('postsEmpty');
+      if (snap.empty) { empty.style.display = 'block'; return; }
+      empty.style.display = 'none';
+      list.innerHTML = '';
+      snap.forEach(d => {
+        const p = d.data();
+        const date = p.ts ? new Date(p.ts.seconds*1000).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}) : '';
+        const card = document.createElement('div');
+        card.className = 'post-card';
+        card.innerHTML = `
+          ${p.imageUrl ? `<img src="${p.imageUrl}" class="post-img" alt="">` : ''}
+          <div class="post-body">
+            <div class="post-meta">
+              <span class="post-tag">Chaos Path</span>
+              <span class="post-date">${date}</span>
+            </div>
+            <div class="post-title">${p.title.replace(/</g,'&lt;')}</div>
+            <div class="post-text">${p.body.replace(/</g,'&lt;')}</div>
+          </div>`;
+        list.appendChild(card);
+      });
+    }
+
+    const q = query(collection(db, 'devlog'), orderBy('ts', 'desc'));
+    onSnapshot(q, renderPosts);
+
+    onAuthStateChanged(auth, user => {
+      currentUser = user;
+      if (user && user.uid === ADMIN_UID) {
+        document.getElementById('adminPanel').style.display = 'flex';
+      }
+    });
+  </script>
+</body>
+</html>
