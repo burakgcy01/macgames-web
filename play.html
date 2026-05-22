@@ -193,27 +193,6 @@
       font-family: system-ui, sans-serif;
     }
 
-    .rotate-notice {
-      display: none;
-      position: absolute;
-      inset: 0;
-      z-index: 30;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      background: rgba(10,10,10,0.96);
-      text-align: center;
-    }
-
-    .rotate-icon {
-      width: 48px;
-      height: 30px;
-      margin: 0 auto 16px;
-      border: 2px solid var(--text2);
-    }
-
-    .rotate-notice h2 { font-size: 18px; margin-bottom: 8px; }
-    .rotate-notice p { color: var(--text2); font-size: 13px; line-height: 1.5; font-family: system-ui, sans-serif; }
 
     /* REVIEWS */
     .reviews-panel {
@@ -340,10 +319,6 @@
       .play-sidebar { order: 2; }
     }
 
-    @media (orientation: portrait) and (max-width: 760px) {
-      #game-area { min-height: min(72vh, 620px); aspect-ratio: auto; }
-      .rotate-notice { display: flex; }
-    }
   </style>
 </head>
 <body>
@@ -386,13 +361,6 @@
             <div id="unity-warning"></div>
             <div id="unity-footer">
               <div id="unity-build-title">Chaos Path v1.00.r6 — Web Demo</div>
-            </div>
-            <div class="rotate-notice" aria-live="polite">
-              <div>
-                <div class="rotate-icon" aria-hidden="true"></div>
-                <h2>Rotate to play</h2>
-                <p>Chaos Path is built for landscape. Turn your phone sideways.</p>
-              </div>
             </div>
           </div>
         </div>
