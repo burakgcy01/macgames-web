@@ -27,13 +27,14 @@
     .product-logo-img{width:min(540px,82%);height:auto;filter:drop-shadow(0 22px 28px rgba(0,0,0,.55))}
     .pk-logo{width:min(420px,78%);height:auto;border-radius:8px;box-shadow:0 26px 54px rgba(0,0,0,.4)}
     .product-info{display:flex;flex-direction:column;justify-content:flex-end;min-height:520px;padding:64px 56px;background:linear-gradient(90deg,rgba(5,6,10,.18),rgba(5,6,10,.86));border-left:1px solid rgba(255,255,255,.11)}
-    .product-info h1{margin-top:18px;font-size:clamp(52px,6.4vw,92px);line-height:.94;font-weight:900;letter-spacing:-.04em}
+    .product-info h1{margin-top:18px;max-width:100%;font-size:clamp(46px,5.4vw,84px);line-height:.94;font-weight:900;letter-spacing:0;overflow-wrap:anywhere}
     .product-info p{margin-top:20px;color:#c7cfdd;font-size:clamp(16px,1.55vw,20px);line-height:1.55}
     .product-tags,.product-actions,.product-rating{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
     .carousel-arrow{position:absolute;z-index:5;top:50%;width:46px;height:46px;transform:translateY(-50%);border:1px solid rgba(255,255,255,.18);border-radius:8px;background:rgba(8,10,15,.78);color:#f6f7fb;font-size:18px;font-weight:900;cursor:pointer}
     .carousel-prev{left:18px}.carousel-next{right:18px}.carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:18px}.carousel-dots button{width:34px;height:6px;border:0;border-radius:8px;background:rgba(255,255,255,.2)}.carousel-dots button.active{background:#f4f6fb}
     @media(max-width:900px){.product-card{grid-template-columns:1fr;min-height:calc(100svh - 150px)}.product-visual{min-height:330px;padding:44px 22px 20px}.product-info{min-height:auto;padding:26px 22px 34px;border-left:0;border-top:1px solid rgba(255,255,255,.11)}.carousel-arrow{top:250px}}
-    @media(max-width:560px){.product-home{padding:78px 14px 22px}.product-card{min-height:calc(100svh - 132px)}.product-visual{min-height:260px}.product-info h1{font-size:42px}.carousel-prev{left:10px}.carousel-next{right:10px}}
+    @media(max-width:900px){.product-info h1{font-size:44px}}
+    @media(max-width:560px){.product-home{padding:78px 14px 22px}.product-card{min-height:calc(100svh - 132px)}.product-visual{min-height:260px}.product-info h1{font-size:38px}.carousel-prev{left:10px}.carousel-next{right:10px}}
   </style>
 </head>
 <body>
@@ -109,8 +110,8 @@
               <span>Mac Games</span>
             </div>
             <div class="product-actions">
-              <a href="/devlog.html" class="btn-primary">Follow</a>
-              <span class="btn-secondary disabled">Coming Soon</span>
+              <span class="btn-primary disabled">Coming Soon</span>
+              <a href="/devlog.html" class="btn-secondary">Devlog</a>
             </div>
           </div>
         </article>
