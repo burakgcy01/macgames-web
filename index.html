@@ -12,36 +12,14 @@
   <link rel="icon" type="image/png" href="images/macgames-logo-new.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=product-fix-2">
-  <style>
-    .product-home{min-height:100svh;padding:92px 24px 34px;display:flex;align-items:stretch;background:#05060a;color:#f6f7fb}
-    .product-stage{position:relative;width:min(1180px,100%);margin:0 auto;display:grid;grid-template-rows:1fr auto;align-items:center}
-    .product-carousel{position:relative;min-height:min(760px,calc(100svh - 150px))}
-    .product-card{position:relative;display:none!important;grid-template-columns:minmax(0,1.05fr) minmax(360px,.78fr);align-items:stretch;min-height:min(760px,calc(100svh - 150px));overflow:hidden;border:1px solid rgba(255,255,255,.11);border-radius:8px;background:#10141d}
-    .product-card.active{display:grid!important}
-    .product-backdrop{position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(5,6,10,.18),rgba(5,6,10,.78)),var(--product-bg);background-size:cover;background-position:center;filter:saturate(1.02) contrast(1.04);transform:scale(1.02)}
-    .product-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,6,10,.12),rgba(5,6,10,.72))}
-    .product-visual,.product-info{position:relative;z-index:1}
-    .product-visual{min-height:520px;display:flex;align-items:center;justify-content:center;padding:58px}
-    .product-logo-img{width:min(540px,82%);height:auto;filter:drop-shadow(0 22px 28px rgba(0,0,0,.55))}
-    .pk-logo{width:min(420px,78%);height:auto;border-radius:8px;box-shadow:0 26px 54px rgba(0,0,0,.4)}
-    .product-info{display:flex;flex-direction:column;justify-content:flex-end;min-height:520px;padding:64px 56px;background:linear-gradient(90deg,rgba(5,6,10,.18),rgba(5,6,10,.86));border-left:1px solid rgba(255,255,255,.11)}
-    .product-info h1{margin-top:18px;max-width:100%;font-size:clamp(38px,4.7vw,74px);line-height:.94;font-weight:900;letter-spacing:0;white-space:nowrap;overflow-wrap:normal;word-break:normal}
-    .product-info p{margin-top:20px;color:#c7cfdd;font-size:clamp(16px,1.55vw,20px);line-height:1.55}
-    .product-tags,.product-actions,.product-rating{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-    .carousel-arrow{position:absolute;z-index:5;top:50%;width:46px;height:46px;transform:translateY(-50%);border:1px solid rgba(255,255,255,.18);border-radius:8px;background:rgba(8,10,15,.78);color:#f6f7fb;font-size:18px;font-weight:900;cursor:pointer}
-    .carousel-prev{left:18px}.carousel-next{right:18px}.carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:18px}.carousel-dots button{width:34px;height:6px;border:0;border-radius:8px;background:rgba(255,255,255,.2)}.carousel-dots button.active{background:#f4f6fb}
-    @media(max-width:900px){.product-card{grid-template-columns:1fr;min-height:calc(100svh - 150px)}.product-visual{min-height:330px;padding:44px 22px 20px}.product-info{min-height:auto;padding:26px 22px 34px;border-left:0;border-top:1px solid rgba(255,255,255,.11)}.carousel-arrow{top:250px}}
-    @media(max-width:900px){.product-info h1{font-size:38px}}
-    @media(max-width:560px){.product-home{padding:78px 14px 22px}.product-card{min-height:calc(100svh - 132px)}.product-visual{min-height:260px}.product-info h1{font-size:32px}.carousel-prev{left:10px}.carousel-next{right:10px}}
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <nav>
     <div class="nav-inner">
       <a href="/" class="nav-logo">
-        <img src="images/macgames-logo-new.png" alt="Mac Games">MAC GAMES
+        <img src="images/macgames-logo-new.png" alt="Mac Games">Mac Games
       </a>
       <div class="nav-links">
         <a href="#games">Games</a>
@@ -61,74 +39,77 @@
     <a href="/privacy.html" onclick="closeMobileNav()">Privacy</a>
   </div>
 
-  <main class="product-home" id="games">
-    <section class="product-stage" aria-label="Mac Games products">
-      <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous product">&larr;</button>
-
-      <div class="product-carousel" id="productCarousel">
-        <article class="product-card active" data-product-card style="--product-bg:url('images/screenshot-gameplay.jpg')">
-          <div class="product-backdrop"></div>
-          <div class="product-visual">
-            <img class="product-logo-img" src="images/chaos-path-text.png" alt="Chaos Path">
-          </div>
-          <div class="product-info">
-            <span class="eyebrow">Playable now</span>
-            <h1>Chaos Path</h1>
-            <p>Mine rare ores, craft stronger tools, and push through a procedural survival world directly in your browser.</p>
-            <div class="product-rating">
-              <span class="rating-stars" data-rating-stars="chaos-path">-----</span>
-              <span data-rating-summary="chaos-path">No ratings yet</span>
-            </div>
-            <div class="product-tags">
-              <span>Survival</span>
-              <span>Mining</span>
-              <span>Crafting</span>
-              <span>Web demo</span>
-            </div>
-            <div class="product-actions">
-              <a href="/play.html" class="btn-primary">Play</a>
-              <a href="/devlog.html" class="btn-secondary">Devlog</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card" data-product-card style="--product-bg:url('images/pk-logo.png')">
-          <div class="product-backdrop"></div>
-          <div class="product-visual pk-visual">
-            <img class="pk-logo" src="images/pk-logo.png" alt="Persistence K">
-          </div>
-          <div class="product-info">
-            <span class="eyebrow">Upcoming</span>
-            <h1>Persistence K</h1>
-            <p>A clean, focused builder project from Mac Games. More details will be shared as development opens up.</p>
-            <div class="product-rating muted-rating">
-              <span>In development</span>
-            </div>
-            <div class="product-tags">
-              <span>Upcoming</span>
-              <span>Creative tools</span>
-              <span>Mac Games</span>
-            </div>
-            <div class="product-actions">
-              <span class="btn-primary disabled">Coming Soon</span>
-              <a href="/devlog.html" class="btn-secondary">Devlog</a>
-            </div>
-          </div>
-        </article>
+  <section class="hero" id="games">
+    <div class="hero-main">
+      <div class="hero-left">
+        <p class="hero-label">Independent game studio</p>
+        <h1 class="hero-title">Games<br>built to<br><em>last.</em></h1>
+        <p class="hero-desc">We make small, focused games you can play right now in your browser — and bigger ones that take time to get right.</p>
       </div>
-
-      <button class="carousel-arrow carousel-next" type="button" aria-label="Next product">&rarr;</button>
-      <div class="carousel-dots" id="carouselDots" aria-label="Product selector">
-        <button class="active" type="button" aria-label="Show Chaos Path"></button>
-        <button type="button" aria-label="Show Persistence K"></button>
+      <div class="hero-right">
+        <img src="images/screenshot-gameplay.jpg" alt="Chaos Path gameplay">
+        <div class="hero-right-overlay"></div>
+        <span class="hero-right-badge">Chaos Path — Live</span>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
+  <section class="games-section">
+    <div class="section-header">
+      <span class="section-title">All games</span>
+      <span class="section-count">02 titles</span>
+    </div>
+    <div class="games-grid">
+
+      <article class="game-card">
+        <div class="game-card-img">
+          <img src="images/screenshot-gameplay.jpg" alt="Chaos Path">
+          <div class="game-card-logo">
+            <img src="images/cp-logo.png" alt="Chaos Path logo" style="mix-blend-mode:screen">
+          </div>
+        </div>
+        <div class="game-card-info">
+          <div class="game-card-top">
+            <span class="game-card-name">Chaos Path</span>
+            <span class="game-status live">Live</span>
+          </div>
+          <p class="game-card-desc">Mine rare ores, craft stronger tools, and push through a procedural survival world directly in your browser.</p>
+          <div class="game-card-actions">
+            <a href="/play.html" class="btn-primary">Play</a>
+            <a href="/devlog.html" class="btn-secondary">Devlog</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="game-card">
+        <div class="game-card-img">
+          <img src="images/pk-screenshot.png" alt="Persistence K" style="opacity:0.55">
+          <div class="game-card-logo">
+            <img src="images/pk-logo.png" alt="Persistence K logo" style="mix-blend-mode:screen">
+          </div>
+        </div>
+        <div class="game-card-info">
+          <div class="game-card-top">
+            <span class="game-card-name">Persistence K</span>
+            <span class="game-status">Upcoming</span>
+          </div>
+          <p class="game-card-desc">A clean, focused builder project from Mac Games. More details will be shared as development opens up.</p>
+          <div class="game-card-actions">
+            <span class="btn-primary disabled">Coming Soon</span>
+            <a href="/devlog.html" class="btn-secondary">Devlog</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
+    <div class="footer-inner">
       <div class="footer-brand">
-        <a href="/" class="nav-logo"><img src="images/macgames-logo-new.png" alt="Mac Games">MAC GAMES</a>
+        <a href="/" class="nav-logo">
+          <img src="images/macgames-logo-new.png" alt="Mac Games">Mac Games
+        </a>
         <p>Independent games, direct from the studio.</p>
       </div>
       <div class="footer-links">
@@ -141,27 +122,13 @@
     </div>
   </footer>
 
-  <script src="script.js?v=product-fix-2"></script>
-  <script type="module" src="reviews.js?v=product-fix-2"></script>
+  <script src="script.js"></script>
+  <script type="module" src="reviews.js"></script>
   <script>
     const burger = document.getElementById('navBurger');
     const navMobile = document.getElementById('navMobile');
     burger.addEventListener('click', () => navMobile.classList.toggle('open'));
     function closeMobileNav() { navMobile.classList.remove('open'); }
-
-    const cards = Array.from(document.querySelectorAll('[data-product-card]'));
-    const dots = Array.from(document.querySelectorAll('#carouselDots button'));
-    let productIndex = 0;
-
-    function showProduct(index) {
-      productIndex = (index + cards.length) % cards.length;
-      cards.forEach((card, i) => card.classList.toggle('active', i === productIndex));
-      dots.forEach((dot, i) => dot.classList.toggle('active', i === productIndex));
-    }
-
-    document.querySelector('.carousel-prev').addEventListener('click', () => showProduct(productIndex - 1));
-    document.querySelector('.carousel-next').addEventListener('click', () => showProduct(productIndex + 1));
-    dots.forEach((dot, i) => dot.addEventListener('click', () => showProduct(i)));
   </script>
 </body>
 </html>
