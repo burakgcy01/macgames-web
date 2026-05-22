@@ -2,6 +2,18 @@
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Embedder-Policy: require-corp
 
+/*.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/style.css
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/images/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
 /Build/webbuild3.framework.js
   Content-Type: application/javascript
 
